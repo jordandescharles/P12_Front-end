@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&display=swap');
+*{
+  font-family: 'Lexend', sans-serif;}
+.App {
+  margin:0;
+  text-align: center;
+}
+.logo{
+  max-width: 200px;
+  padding: 20px;
+}
+.container{
+  border: 1px solid grey;
+  border-radius: 20px;
+  width: fit-content;
+  padding:20px 100px;
+  margin: auto;
+}
+a, a:visited{
+  color:#007974 ;
+  text-decoration: none;
+  font-weight: 500;
+}
+form{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: left;
+}
+.infos , .address{
+  background-color: #7bcdc830;
+  padding: 20px;
+  border-radius: 10px;
+}
+.infos>*, .address>*{
+  display: block;
+}
+input{
+  margin: 5px 0 10px 0;
+
+}
+.btn{
+  padding:10px 20px;
+  margin: 20px;
+  background-color: #7bcdc830;
+  border: 1px black solid ;
+  border-radius: 5px;
+}
+select{ 
+  margin: 5px 0 10px 0;
+  display: inline;
+  background-color: white;
+  border: 1px grey solid ;
+  border-radius: 2px;
+}
+ul span{
+  display: inline-block;
+  width:100px;
+  font-size: 11pt;
+  padding: 0 10px;
+}
+ul{
+  padding: 0%;
+  list-style:none;
+  text-align: left;
+  margin: auto;
+  display: block;
+ 
+}
+li{
+  margin: 0 auto;
+  width: fit-content;
+  display: block;
+}
+/* colors 
+Green : 
+Blue : #7bcdc8
+*/
+
