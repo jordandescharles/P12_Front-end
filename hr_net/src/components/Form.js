@@ -1,10 +1,14 @@
 import React from 'react';
 import states from '../datas/states';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import { Link } from "react-router-dom";
+import Employees from './Employees'
+
 
 import { addUser } from '../redux/employeeSlice';
+
 
 
 function Form() {
@@ -13,6 +17,12 @@ function Form() {
         const stateSelect = document.getElementById('state');
         //check if stateSelect has child to fill it with states
         if (!stateSelect.hasChildNodes()) {
+
+            const option = document.createElement('option');
+            option.value = "stateSelect";
+            option.text = "Select State";
+            stateSelect.appendChild(option);
+
             states.forEach(function (state) {
                 const option = document.createElement('option');
                 option.value = state.abbreviation;
@@ -22,16 +32,18 @@ function Form() {
         }
     });
 
-    const[firstName,setFirstName] = useState('')
-    const[lastName,setLastName] = useState('')
-    const[startDate,setStartDate] = useState('')
-    const[department,setDepartment] = useState('')
-    const[birthDate,setBirthDate] = useState('')
-    const[street,setStreet] = useState('')
-    const[city,setCity] = useState('')
-    const[usState, setUsState] = useState('')
-    const[zipCode, setZipCode] = useState('')
+    // USE STATE FOR FIELDS
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [department, setDepartment] = useState('')
+    const [birthDate, setBirthDate] = useState('')
+    const [street, setStreet] = useState('')
+    const [city, setCity] = useState('')
+    const [usState, setUsState] = useState('')
+    const [zipCode, setZipCode] = useState('')
 
+    // HANDLECHANGES AND SET STATE
     const onFirstNameChange = e => setFirstName(e.target.value)
     const onLastNameChange = e => setLastName(e.target.value)
     const onStartDateChange = e => setStartDate(e.target.value)
@@ -44,31 +56,52 @@ function Form() {
 
     const dispatch = useDispatch()
 
-    const saveEmployee = () => { 
-        if(firstName && lastName && startDate && department && birthDate && street && city && usState && zipCode){
-            dispatch(
-                addUser({
-                    id: nanoid(0),
-                    firstName:firstName,
-                    lastName:lastName,
-                    startDate:startDate,
-                    department:department,
-                    birthDate:birthDate,
-                    street:street,
-                    city:city,
-                    usState:usState,
-                    zipCode:zipCode
-                })
-            )
-            console.log("nope")
-        }
-    
-    }
+    const saveEmployee = () => {
+        if (
+            firstName.length < 2 ||
+            lastName.length < 2 ||
+            department.length < 2 ||
+            street.length < 2 ||
+            city.length < 2 ||
+            usState.length < 2 ||
+            birthDate === '' ||
+            startDate === '' ||
+            zipCode === ''
+          ) {
+            alert('Please fill all the fields with 2 character minimum.');
+            return false;
+          }
 
+        dispatch(
+            addUser({
+                id: nanoid(),
+                firstName: firstName,
+                lastName: lastName,
+                startDate: startDate,
+                department: department,
+                birthDate: birthDate,
+                street: street,
+                city: city,
+                usState: usState,
+                zipCode: zipCode
+            })
+        )
+        setFirstName('')
+        setLastName('')
+        setStartDate('')
+        setDepartment('')
+        setBirthDate('')
+        setStreet('')
+        setCity('')
+        setUsState('')
+        setZipCode('')
+    } 
+    
 
     return (
-        <div>                
-            <a href="employee-list.html">View Current Employees</a>
+        <div>
+            <link rel="stylesheet" href="" />
+            <Link to="/employees">View Current Employees</Link>
             <br /><br />
             <div className="container">
                 <h2>Create Employee</h2>
@@ -77,13 +110,13 @@ function Form() {
                         <fieldset className="address">
                             <legend>Infos</legend>
                             <label htmlFor="first-name" >First Name</label>
-                            <input id="first-name" onChange={onFirstNameChange} value={firstName}/>
+                            <input id="first-name" onChange={onFirstNameChange} value={firstName} />
                             <label htmlFor="last-name">Last Name</label>
-                            <input  id="last-name" onChange={onLastNameChange} value={lastName} />
+                            <input id="last-name" onChange={onLastNameChange} value={lastName}  />
                             <label htmlFor="date-of-birth">Date of Birth</label>
-                            <input id="date-of-birth"  onChange={onBirthDateChange} value={birthDate}/>
+                             <input id="date-of-birth" onChange={onBirthDateChange} type="date" value={birthDate} /> 
                             <label htmlFor="start-date">Start Date</label>
-                            <input id="start-date" onChange={onStartDateChange} value={startDate}/>
+                            <input id="start-date" onChange={onStartDateChange} type="date"  value={startDate} />
                         </fieldset>
 
                     </div>
@@ -91,15 +124,16 @@ function Form() {
                         <fieldset className="address">
                             <legend>Address</legend>
                             <label htmlFor="street" >Street</label>
-                            <input id="street" onChange={onStreetChange} value={street}/>
+                            <input id="street" onChange={onStreetChange} value={street} />
                             <label htmlFor="city" >City</label>
                             <input id="city" onChange={onCityChange} value={city} />
                             <label htmlFor="state">State</label>
-                            <select name="state" id="state"onChange={onUsStateChange} value={usState}></select>
+                            <select name="state" id="state" onChange={onUsStateChange} defaultValue={"stateSelect"}></select>
                             <label htmlFor="zip-code">Zip Code</label>
-                            <input id="zip-code" type="number" onChange={onZipCodeChange} value={zipCode}/>
+                            <input id="zip-code" type="number" onChange={onZipCodeChange} value={zipCode} />
                             <label htmlFor="department">Department</label>
-                            <select name="department" id="department" onChange={onDepartmentChange} value={department}>
+                            <select name="department" id="department" onChange={onDepartmentChange} defaultValue={"deptSelect"}>
+                            <option value="deptSelect" disabled >Select  department</option>
                                 <option>Sales</option>
                                 <option>Marketing</option>
                                 <option>Engineering</option>
@@ -109,7 +143,7 @@ function Form() {
                         </fieldset>
                     </div>
                 </form>
-                <button className='btn' onClick={saveEmployee} type="button">Save</button>
+                <button className='btn' onClick={saveEmployee} type="submit">Save</button>
             </div>
         </div>
     );
