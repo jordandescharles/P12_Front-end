@@ -4,12 +4,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { Link } from "react-router-dom";
-import Employees from './Employees'
-
 
 import { addUser } from '../redux/employeeSlice';
-
-
 
 function Form() {
 
@@ -100,8 +96,7 @@ function Form() {
 
     return (
         <div>
-            <link rel="stylesheet" href="" />
-            <Link to="/employees">View Current Employees</Link>
+            <Link to="employees">View Current Employees</Link>
             <br /><br />
             <div className="container">
                 <h2>Create Employee</h2>

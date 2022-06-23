@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&display=swap');
 *{
   font-family: 'Lexend', sans-serif;}
-.App {
+  body{
+    margin: 0;
+    padding: 0%;
+  }
+  
+#root{
   margin:0;
   text-align: center;
 }
@@ -72,6 +77,23 @@ li{
   width: fit-content;
   display: block;
 }
+.topColor{
+ width: 100vw;
+ height: 3vh;
+ background-color: #007974;
+}
+.table{
+  width: 70vw;
+  margin: auto ;
+}
+.searchField{
+  width: 70vw;
+  margin: auto ;
+
+  text-align: right;
+
+}
+
 /* colors 
 Green : 
 Blue : #7bcdc8

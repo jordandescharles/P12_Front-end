@@ -10,7 +10,7 @@ function Routeur() {
         <Routes>
           <Route path="/" element={<App />} />
           <Route index element={<Homepage />} />
-          <Route path="employees" element={<Employees />} />
+          <Route path="employees" element={<Employees />}  />
         </Routes>
 
   );

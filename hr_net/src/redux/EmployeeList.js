@@ -3,17 +3,23 @@ import { selectAllEmployees } from "./employeeSlice";
 import DataTable from 'react-data-table-component';
 import mockedUser from "../datas/mockdatas";
 import FilterComponent from 'react-data-table-component';
+import { Link } from "react-router-dom";
 
 import React from 'react'
+import Header from "../components/Header";
 
 
 const EmployeeList = () => {
+
+  const employees = useSelector(selectAllEmployees)
+
+  const datas = mockedUser // CHANGE THIS TO mockedUser TO SEE PAGINATION
 
   const [filterText, setFilterText] = React.useState('');
   const onfilter = e => setFilterText(e.target.value)
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 
-  const filteredItems = mockedUser.filter(
+  const filteredItems = datas.filter(
     item =>
       item.lastName.toLowerCase().includes(filterText.toLowerCase()) ||
       item.firstName.toLowerCase().includes(filterText.toLowerCase()) ||
@@ -21,6 +27,7 @@ const EmployeeList = () => {
       item.startDate.includes(filterText.toLowerCase()) ||
       item.department.toLowerCase().includes(filterText.toLowerCase()) ||
       item.usState.toLowerCase().includes(filterText.toLowerCase()) ||
+      item.street.toLowerCase().includes(filterText.toLowerCase()) ||
       item.city.toLowerCase().includes(filterText.toLowerCase()) ||
       item.zipCode.includes(filterText.toLowerCase()),
   );
@@ -38,7 +45,6 @@ const EmployeeList = () => {
     );
   }, [filterText, resetPaginationToggle]);
 
-  const employees = useSelector(selectAllEmployees)
 
   const columns = [
     {
@@ -90,11 +96,14 @@ const EmployeeList = () => {
 
   return (
     <>
+    <Header/>
+    <Link to="/">Home</Link>
+
       <div className="searchField">
         <span>search: </span>
         <input type="text" onChange={onfilter} />
       </div>
-
+    <div className="table">
       <DataTable
         columns={columns}
         data={filteredItems}
@@ -103,6 +112,8 @@ const EmployeeList = () => {
         paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
         subHeaderComponent={subHeaderComponentMemo}
       />
+      </div>
+
     </>
   )
 }
