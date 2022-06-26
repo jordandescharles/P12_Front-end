@@ -7,7 +7,7 @@ import { addUser } from '../redux/employeeSlice';
 import SelectMenu from './SelectMenu';
 import Modal from './Modal';
 
-var showModal = false;
+
 
 // values for modal
 var first = ''
@@ -25,10 +25,10 @@ function Form() {
     const [city, setCity] = useState('')
     const [usState, setUsState] = useState('')
     const [zipCode, setZipCode] = useState('')
-    const [displayModal, setdisplayModal] = useState(showModal)
+    const [displayModal, setdisplayModal] = useState(false)
 
     // HANDLECHANGES AND SET STATE
-    const onFirstNameChange = e => {setFirstName(e.target.value);setdisplayModal(false)}
+    const onFirstNameChange = e => { setFirstName(e.target.value); setdisplayModal(false) }
     const onLastNameChange = e => setLastName(e.target.value)
     const onStartDateChange = e => setStartDate(e.target.value)
     const onDepartmentChange = e => setDepartment(e.target.value)
@@ -70,24 +70,16 @@ function Form() {
                 zipCode: zipCode
             })
         )
-        
-        // saving names for modal display
+
+        // Saving names for modal display
         first = firstName
         last = lastName
         setdisplayModal(true)
-
-        setFirstName('')
-        setLastName('')
-        setStartDate('')
-        setDepartment('')
-        setBirthDate('')
-        setStreet('')
-        setCity('')
-        setUsState('')
-        setZipCode('')
-
+        
+        // Data Reset
+        setFirstName(''); setLastName(''); setStartDate(''); setDepartment(''); setBirthDate('')
+        setStreet(''); setCity(''); setUsState(''); setZipCode('')
     }
-
 
     return (
 
