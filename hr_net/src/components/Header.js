@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from "../img/logo_hr.png"
 
-function Header(props) {
+function Header() {
     return (
         <div className='header'>
             <div className='topColor'></div>
