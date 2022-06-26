@@ -1,32 +1,13 @@
 import React from 'react';
-import states from '../datas/states';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { Link } from "react-router-dom";
-
 import { addUser } from '../redux/employeeSlice';
+import SelectMenu from './SelectMenu';
+
 
 function Form() {
-
-    useEffect(() => {
-        const stateSelect = document.getElementById('state');
-        //check if stateSelect has child to fill it with states
-        if (!stateSelect.hasChildNodes()) {
-
-            const option = document.createElement('option');
-            option.value = "stateSelect";
-            option.text = "Select State";
-            stateSelect.appendChild(option);
-
-            states.forEach(function (state) {
-                const option = document.createElement('option');
-                option.value = state.abbreviation;
-                option.text = state.name;
-                stateSelect.appendChild(option);
-            })
-        }
-    });
 
     // USE STATE FOR FIELDS
     const [firstName, setFirstName] = useState('')
@@ -95,6 +76,7 @@ function Form() {
     
 
     return (
+    
         <div>
             <Link to="employees">View Current Employees</Link>
             <br /><br />
@@ -123,7 +105,7 @@ function Form() {
                             <label htmlFor="city" >City</label>
                             <input id="city" onChange={onCityChange} value={city} />
                             <label htmlFor="state">State</label>
-                            <select name="state" id="state" onChange={onUsStateChange} defaultValue={"stateSelect"}></select>
+                            <SelectMenu onChange={onUsStateChange}/>
                             <label htmlFor="zip-code">Zip Code</label>
                             <input id="zip-code" type="number" onChange={onZipCodeChange} value={zipCode} />
                             <label htmlFor="department">Department</label>

@@ -1,16 +1,15 @@
 import React from 'react';
 import App from '../App';
-import Employees from './Employees';
 import { Route, Routes } from "react-router-dom";
-import Homepage from './Homepage';
-
+import Homepage from '../pages/Homepage';
+import EmployeeList from '../pages/EmployeeList';
 
 function Routeur() {
   return (
         <Routes>
           <Route path="/" element={<App />} />
           <Route index element={<Homepage />} />
-          <Route path="employees" element={<Employees />}  />
+          <Route path="employees" element={<EmployeeList />}  />
         </Routes>
 
   );

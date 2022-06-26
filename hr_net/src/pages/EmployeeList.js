@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectAllEmployees } from "./employeeSlice";
+import { selectAllEmployees } from "../redux/employeeSlice";
 import DataTable from 'react-data-table-component';
 import mockedUser from "../datas/mockdatas";
 import FilterComponent from 'react-data-table-component';
@@ -13,7 +13,7 @@ const EmployeeList = () => {
 
   const employees = useSelector(selectAllEmployees)
 
-  const datas = mockedUser // CHANGE THIS TO mockedUser TO SEE PAGINATION
+  const datas = employees // CHANGE THIS TO mockedUser TO SEE PAGINATION
 
   const [filterText, setFilterText] = React.useState('');
   const onfilter = e => setFilterText(e.target.value)
