@@ -1,5 +1,5 @@
-import React from 'react';
-import './Modal.css'
+import React from 'react'
+
 
 function Modal(props) {
 
@@ -11,7 +11,6 @@ function Modal(props) {
         var showModal = (props.display ? 'block' : 'none');
         setmodalDisplay(showModal);
     }, [props.display])
-
 
 
     if (props.button) {
