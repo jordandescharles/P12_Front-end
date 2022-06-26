@@ -100,8 +100,8 @@ const EmployeeList = () => {
     <Link to="/">Home</Link>
 
       <div className="searchField">
-        <span>search: </span>
-        <input type="text" onChange={onfilter} />
+      <label htmlFor="search" >Search : </label>
+        <input type="text" id="search" onChange={onfilter} />
       </div>
     <div className="table">
       <DataTable
