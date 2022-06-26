@@ -5,7 +5,13 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Link } from "react-router-dom";
 import { addUser } from '../redux/employeeSlice';
 import SelectMenu from './SelectMenu';
+import Modal from './Modal';
 
+var showModal = false;
+
+// values for modal
+var first = ''
+var last = ''
 
 function Form() {
 
@@ -19,9 +25,10 @@ function Form() {
     const [city, setCity] = useState('')
     const [usState, setUsState] = useState('')
     const [zipCode, setZipCode] = useState('')
+    const [displayModal, setdisplayModal] = useState(showModal)
 
     // HANDLECHANGES AND SET STATE
-    const onFirstNameChange = e => setFirstName(e.target.value)
+    const onFirstNameChange = e => {setFirstName(e.target.value);setdisplayModal(false)}
     const onLastNameChange = e => setLastName(e.target.value)
     const onStartDateChange = e => setStartDate(e.target.value)
     const onDepartmentChange = e => setDepartment(e.target.value)
@@ -44,10 +51,10 @@ function Form() {
             birthDate === '' ||
             startDate === '' ||
             zipCode === ''
-          ) {
+        ) {
             alert('Please fill all the fields with 2 character minimum.');
             return false;
-          }
+        }
 
         dispatch(
             addUser({
@@ -63,6 +70,12 @@ function Form() {
                 zipCode: zipCode
             })
         )
+        
+        // saving names for modal display
+        first = firstName
+        last = lastName
+        setdisplayModal(true)
+
         setFirstName('')
         setLastName('')
         setStartDate('')
@@ -72,12 +85,23 @@ function Form() {
         setCity('')
         setUsState('')
         setZipCode('')
-    } 
-    
+
+    }
+
 
     return (
-    
+
         <div>
+            < Modal
+                text={"employee " + first + ' ' + last + " has been created"}
+                display={displayModal}
+                width={'30%'}
+                height={'12%'}
+                bgColor={'#7bcdc8ae'}
+                margin={"auto"}
+                button
+                buttonText={"super nickel"} />
+
             <Link to="employees">View Current Employees</Link>
             <br /><br />
             <div className="container">
@@ -89,11 +113,11 @@ function Form() {
                             <label htmlFor="first-name" >First Name</label>
                             <input id="first-name" onChange={onFirstNameChange} value={firstName} />
                             <label htmlFor="last-name">Last Name</label>
-                            <input id="last-name" onChange={onLastNameChange} value={lastName}  />
+                            <input id="last-name" onChange={onLastNameChange} value={lastName} />
                             <label htmlFor="date-of-birth">Date of Birth</label>
-                             <input id="date-of-birth" onChange={onBirthDateChange} type="date" value={birthDate} /> 
+                            <input id="date-of-birth" onChange={onBirthDateChange} type="date" value={birthDate} />
                             <label htmlFor="start-date">Start Date</label>
-                            <input id="start-date" onChange={onStartDateChange} type="date"  value={startDate} />
+                            <input id="start-date" onChange={onStartDateChange} type="date" value={startDate} />
                         </fieldset>
 
                     </div>
@@ -105,12 +129,12 @@ function Form() {
                             <label htmlFor="city" >City</label>
                             <input id="city" onChange={onCityChange} value={city} />
                             <label htmlFor="state">State</label>
-                            <SelectMenu onChange={onUsStateChange}/>
+                            <SelectMenu onChange={onUsStateChange} />
                             <label htmlFor="zip-code">Zip Code</label>
                             <input id="zip-code" type="number" onChange={onZipCodeChange} value={zipCode} />
                             <label htmlFor="department">Department</label>
                             <select name="department" id="department" onChange={onDepartmentChange} defaultValue={"deptSelect"}>
-                            <option value="deptSelect" disabled >Select  department</option>
+                                <option value="deptSelect" disabled >Select  department</option>
                                 <option>Sales</option>
                                 <option>Marketing</option>
                                 <option>Engineering</option>
