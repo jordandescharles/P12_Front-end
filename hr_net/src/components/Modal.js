@@ -1,18 +1,35 @@
 import React from 'react'
 
-
+/**
+* Displays a modal.
+*
+* @param props 
+*
+* - text : "main modal text " 
+* - display : true/false  (Hook to switch modal on/off)
+* - Button (to display a button below the main text)
+* - ButtonText : "char"  (text inside button)
+*
+* - Css Usable as regular css for MODAL =>
+* width / height / bgColor / margin
+* - Css Usable as regular css for BUTTON =>
+* buttonHeight / buttonHeight / buttonBgColor / buttonMargin / buttonBorder / buttonPadding
+*
+* @version 0.0.1
+*/
 function Modal(props) {
 
     // useState/Effect to trigger modal display
     const [modalDisplay, setmodalDisplay] = React.useState({...props.display});
-    const onButtonClick = () => { setmodalDisplay("none") }
-
+    const onButtonClick = () => { 
+        setmodalDisplay("none") 
+    }
     React.useEffect(() => {
         var showModal = (props.display ? 'block' : 'none');
         setmodalDisplay(showModal);
     }, [props.display])
 
-
+    // check if the prop.button exist to display it
     if (props.button) {
         var btnDisplay = "inline-block"
     }
@@ -24,6 +41,7 @@ function Modal(props) {
                     display:modalDisplay,
                 }
             }>
+            
             <div className="modal" style={
                 {
                     width: props.width,
@@ -31,8 +49,10 @@ function Modal(props) {
                     backgroundColor: props.bgColor,
                     margin: props.margin
                 }
-            }>
-                <span className="close">&times;</span>
+            }><span className="close" onClick={onButtonClick}>
+                &times;
+            </span>
+                
                 <p>{props.text}</p>
                 <button className='modalBtn' style={
                     {

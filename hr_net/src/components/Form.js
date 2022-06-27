@@ -7,8 +7,6 @@ import { addUser } from '../redux/employeeSlice';
 import SelectMenu from './SelectMenu';
 import Modal from './Modal';
 
-
-
 // values for modal
 var first = ''
 var last = ''
@@ -87,12 +85,12 @@ function Form() {
             < Modal
                 text={"employee " + first + ' ' + last + " has been created"}
                 display={displayModal}
-                width={'30%'}
-                height={'12%'}
-                bgColor={'#7bcdc8ae'}
-                margin={"auto"}
+                width={'40%'}
+                height={'15%'}
+                bgColor={'#7bcdc8'}
+                margin={"30vh auto "}
                 button
-                buttonText={"super nickel"} />
+                buttonText={"fermer"} />
 
             <Link to="employees">View Current Employees</Link>
             <br /><br />

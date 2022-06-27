@@ -13,7 +13,7 @@ const EmployeeList = () => {
 
   const employees = useSelector(selectAllEmployees)
 
-  const datas = employees // CHANGE THIS TO mockedUser TO SEE PAGINATION
+  const datas = mockedUser // CHANGE THIS TO mockedUser TO SEE PAGINATION
 
   const [filterText, setFilterText] = React.useState('');
   const onfilter = e => setFilterText(e.target.value)

@@ -11,7 +11,8 @@
   text-align: center;
 }
 .logo{
-  max-width: 200px;
+  width: 240px;
+  height: 72px;
   padding: 20px;
 }
 .container{
@@ -89,13 +90,7 @@ li{
 .searchField{
   width: 70vw;
   margin: auto ;
-
   text-align: right;
-
 }
 
-/* colors 
-Green : 
-Blue : #7bcdc8
-*/
 
