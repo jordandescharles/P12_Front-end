@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 /**
 * Displays a modal.
 *
 * @param props 
-*
+* list of props you can use :
 * - text : "main modal text " 
 * - display : true/false  (Hook to switch modal on/off)
 * - Button (to display a button below the main text)
@@ -15,12 +15,12 @@ import React from 'react'
 * - Css Usable as regular css for BUTTON =>
 * buttonHeight / buttonHeight / buttonBgColor / buttonMargin / buttonBorder / buttonPadding
 *
-* @version 0.0.1
+* @version 1.0.0
 */
 function Modal(props) {
 
     // useState/Effect to trigger modal display
-    const [modalDisplay, setmodalDisplay] = React.useState({...props.display});
+    const [modalDisplay, setmodalDisplay] = React.useState(props.display);
     const onButtonClick = () => { 
         setmodalDisplay("none") 
     }
@@ -29,19 +29,19 @@ function Modal(props) {
         setmodalDisplay(showModal);
     }, [props.display])
 
+    
     // check if the prop.button exist to display it
+    var btnDisplay = "none"
     if (props.button) {
-        var btnDisplay = "inline-block"
+        btnDisplay = "inline-block"
     }
 
-    return (
-        <div className="modal-container"
+    return  (<div className="modal-container"
             style={
                 {
                     display:modalDisplay,
                 }
             }>
-            
             <div className="modal" style={
                 {
                     width: props.width,

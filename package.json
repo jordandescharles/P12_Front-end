@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "simple-react-modal-oc14-jdc": "^0.2.0"
   }
 }

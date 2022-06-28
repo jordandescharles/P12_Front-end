@@ -5,7 +5,8 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Link } from "react-router-dom";
 import { addUser } from '../redux/employeeSlice';
 import SelectMenu from './SelectMenu';
-import Modal from './Modal';
+//import {Modal} from 'simple-react-modal-oc14-jdc';
+import Modal from '../components/Modal';
 
 // values for modal
 var first = ''
@@ -85,12 +86,18 @@ function Form() {
             < Modal
                 text={"employee " + first + ' ' + last + " has been created"}
                 display={displayModal}
-                width={'40%'}
-                height={'15%'}
-                bgColor={'#7bcdc8'}
-                margin={"30vh auto "}
-                button
-                buttonText={"fermer"} />
+                width='40%'
+                height='15%'
+                bgColor='#7bcdc8'
+                margin="30vh auto "
+                button="yes"
+                buttonText="fermer"
+                buttonWidth="auto"
+                buttonHeight= "auto"
+                buttonBgColor= "white" 
+                buttonBorder= "none"
+                buttonMargin= "auto" 
+                buttonPadding="auto" />
 
             <Link to="employees">View Current Employees</Link>
             <br /><br />
